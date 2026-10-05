@@ -7,7 +7,12 @@ def login():
 def submit():
     username=request.form.get("username")
     password=request.form.get("password")
-    if username == "admin" and password == "pass":
+    valid_user={
+        'admin':'123',
+        'ahrar':'pass',
+        'mofiz':'432'
+    }
+    if username in valid_user and valid_user[username] == password:
         return render_template("welcome.html", username=username)
     else:
         return "Invalid credentials"
