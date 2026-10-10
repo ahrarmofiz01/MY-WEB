@@ -1,4 +1,5 @@
 import sqlite3
+from flask_sqlalchemy import SQLAlchemy
 conn=sqlite3.connect('site.db')
 cursor = conn.cursor()
 
