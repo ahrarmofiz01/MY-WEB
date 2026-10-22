@@ -4,11 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body{
+            background-color: beige;
+        }
+        h1{
+            color:chocolate
+        }
+          form {
+            background-color: white;
+            width: 300px;
+            margin: 30px auto;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px #cbd5e1;
+        }
+          button {
+            background-color: #2563eb;
+            color: white;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #1e40af;
+        }
+    </style>
 </head>
 <body>
     <h1> Welcome to Flask !!</h1>
-    <h2>
-        <p> this is my flask project</p>
-    </h2>
+    <form action="/" method="POST">
+        <label for="name">  Your Name </label><br>
+        <input type="text" id="name" name="name"><br>
+         <button> click me</button>
+    </form>
+   
 </body>
 </html>
