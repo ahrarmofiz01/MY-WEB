@@ -4,6 +4,6 @@ app=Flask(__name__)
 def greet():
     if request.method=="POST":
         name=request.form.get("name")
-        return f"hello,{name}!"
+        return f"hello,{name}!,thanks for sharing your name"
     return render_template("index.html")
     
