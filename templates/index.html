@@ -22,7 +22,7 @@ p{
 
 <body >
 
-    <h1 style=>Smart Task Manager</h1>
+    <h1 style=>Login-Page</h1>
 
     <form action="/add" method="POST">
         <input
@@ -34,10 +34,10 @@ p{
         <br>
 
         <input type="password" name="password" placeholder="enter your password"><br>
-        <button type="submit">Add Task</button>
+        <button type="submit">Login</button>
     </form>
 
-    <h2>My Tasks</h2>
+    
 
     {% for task in tasks %}
         <p>{{ task }}</p>
