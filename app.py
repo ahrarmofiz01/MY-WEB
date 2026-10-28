@@ -8,4 +8,4 @@ def home():
 def signin():
     name=request.form.get("name")
     password=request.form.get("password")
-    return render_template("index.html",name=name)
+    return render_template("base.html",name=name)
