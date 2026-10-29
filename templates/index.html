@@ -1,16 +1,123 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>login_pages</title>
+
+    <title>Login Page</title>
+
+    <style>
+
+        /* Background and page alignment */
+        body {
+            background-color: aquamarine;
+            min-height: 100vh;
+            margin: 0;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-family: Arial, sans-serif;
+        }
+
+        /* Login card */
+        .login-card {
+            background-color: rgb(19, 109, 109);
+
+            width: 350px;
+            padding: 30px;
+
+            border-radius: 15px;
+
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Form layout */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* Name and password input */
+        input {
+            width: 100%;
+            box-sizing: border-box;
+
+            padding: 12px;
+
+            border: 1px solid #ccc;
+            border-radius: 8px;
+
+            font-size: 16px;
+        }
+
+        /* Login button */
+        button {
+            width: 100%;
+
+            padding: 12px;
+
+            background-color: #2563eb;
+            color: white;
+
+            border: none;
+            border-radius: 8px;
+
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        /* Button hover effect */
+        button:hover {
+            background-color: #1d4ed8;
+        }
+
+    </style>
+
 </head>
-<body><div>
-    <form action="/login" method="POST">
-        <input type="text" name="name" placeholder="Enter your name"><br>
-           <input type="password" name="name" placeholder="Enter your Password"><br>
-           <button type="submit"> Login</button>
-    </form>
+
+<body>
+
+    <!-- Login card -->
+    <div class="login-card">
+
+        <h1 style="text-align: center; color: white;">
+            Login Page
+        </h1>
+
+        <!-- Login form -->
+        <form action="/login" method="POST">
+
+            <!-- Name input -->
+            <input
+                type="text"
+                name="name"
+                placeholder="Enter your name"
+                required
+            >
+
+            <!-- Password input -->
+            <input
+                type="password"
+                name="password"
+                placeholder="Enter your password"
+                required
+            >
+
+            <!-- Login button -->
+            <button type="submit">
+                Login
+            </button>
+
+        </form>
+
     </div>
+
 </body>
+
 </html>
+
