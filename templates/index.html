@@ -1,45 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Smart Task Manager</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login_pages</title>
 </head>
-<style>
-    h1 {
-        color: rgb(0, 17, 248);
-    }
-    button{
-        background-color: brown;
-        border-radius: 20%;
-        color: yellow;
-    }
-    h2 {
-        color: blue;
-}
-p{
-    color: blue;
-}
-</style>
-
-<body >
-
-    <h1 style=>Login-Page</h1>
-
-    <form action="/signin" method="POST">
-        <input
-            type="text"
-            name="name"
-            placeholder="Enter your name"
-            required
-        >
-        <br>
-
-        <input type="password" name="password" placeholder="enter your password"><br>
-        <button type="submit">Login</button>
+<body><div>
+    <form action="/login" method="POST">
+        <input type="text" name="name" placeholder="Enter your name"><br>
+           <input type="password" name="name" placeholder="Enter your Password"><br>
+           <button type="submit"> Login</button>
     </form>
-
-    
-
-   
-
+    </div>
 </body>
 </html>
