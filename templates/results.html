@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>IncidentLens Dashboard</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 30px;
+        }
+
+        h1 {
+            color: #1e293b;
+        }
+
+        .cards {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 200px;
+            box-shadow: 0 2px 8px #ddd;
+        }
+
+        .card h3 {
+            color: #64748b;
+            margin: 0;
+        }
+
+        .card p {
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 0;
+        }
+
+        .error {
+            color: #dc2626;
+        }
+
+        .warning {
+            color: #d97706;
+        }
+
+        table {
+            width: 100%;
+            background: white;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background: #e2e8f0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>IncidentLens</h1>
+    <p>Application Log Analysis Dashboard</p>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Total Logs</h3>
+            <p>{{ total_logs }}</p>
+        </div>
+
+        <div class="card">
+            <h3>Total Errors</h3>
+            <p class="error">
+                {{ error_counts.values() | sum }}
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Unique Errors</h3>
+            <p class="warning">
+                {{ error_counts | length }}
+            </p>
+        </div>
+
+    </div>
+
+    <h2>Detected Errors</h2>
+
+    <table>
+        <tr>
+            <th>Error Message</th>
+            <th>Frequency</th>
+        </tr>
+
+        {% for message, count in error_counts.items() %}
+        <tr>
+            <td>{{ message }}</td>
+            <td>{{ count }}</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+    <h2>All Parsed Logs</h2>
+
+    <table>
+        <tr>
+            <th>Timestamp</th>
+            <th>Level</th>
+            <th>Message</th>
+        </tr>
+
+        {% for log in parsed_logs %}
+        <tr>
+            <td>{{ log.timestamp }}</td>
+            <td>{{ log.level }}</td>
+            <td>{{ log.message }}</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+</body>
+</html>

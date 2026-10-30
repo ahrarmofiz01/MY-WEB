@@ -1,6 +1,8 @@
 def parse_log(log):
-
     parts = log.split()
+
+    if len(parts) < 4:
+        return None
 
     timestamp = parts[0] + " " + parts[1]
     level = parts[2]

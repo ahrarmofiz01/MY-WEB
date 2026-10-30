@@ -21,7 +21,8 @@ def upload():
 
     for line in lines:
         parsed_log = parse_log(line)
-        parsed_logs.append(parsed_log)
+        if parsed_log is not None:
+            parsed_logs.append(parsed_log)
 
     # Loop complete hone ke baad analysis hoga
     error_counts = analyze_logs(parsed_logs)

@@ -3,3 +3,6 @@
 2026-10-30 10:00:06 ERROR Database connection failed
 2026-10-30 10:00:10 WARNING Request timeout
 2026-10-30 10:00:15 INFO Request completed
+
+This is an invalid log line
+hi my name is ahraa
