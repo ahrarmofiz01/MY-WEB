@@ -1,6 +1,13 @@
 from flask import Flask, render_template, request, jsonify
 from log_processor import parse_log, analyze_logs
 from database import init_db, save_upload, save_incidents,get_upload_history
+from database import (
+    init_db,
+    save_upload,
+    save_incidents,
+    get_upload_history,
+    get_incidents_by_upload
+)
 
 app = Flask(__name__)
 init_db()
@@ -17,6 +24,15 @@ def history():
     return render_template(
         "history.html",
         uploads=uploads
+    )
+@app.route("/incidents/<int:upload_id>")
+def incidents(upload_id):
+    incident_data = get_incidents_by_upload(upload_id)
+
+    return render_template(
+        "incidents.html",
+        incidents=incident_data,
+        upload_id=upload_id
     )
 
 @app.route("/upload", methods=["POST"])

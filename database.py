@@ -74,3 +74,18 @@ def get_upload_history():
     conn.close()
 
     return uploads
+def get_incidents_by_upload(upload_id):
+    conn = sqlite3.connect(DATABASE)
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT fingerprint, frequency
+        FROM incidents
+        WHERE upload_id = ?
+    """, (upload_id,))
+
+    incidents = cursor.fetchall()
+
+    conn.close()
+
+    return incidents

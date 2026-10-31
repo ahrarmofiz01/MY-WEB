@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IncidentLens - Incidents</title>
+</head>
+<body>
+
+    <h1>Incidents for Upload #{{ upload_id }}</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Error Message</th>
+                <th>Frequency</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for incident in incidents %}
+            <tr>
+                <td>{{ incident[0] }}</td>
+                <td>{{ incident[1] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <br>
+
+    <a href="/history">Back to History</a>
+
+</body>
+</html>
