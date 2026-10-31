@@ -1,3 +1,4 @@
+import re
 def parse_log(log):
     parts = log.split()
 
@@ -13,16 +14,22 @@ def parse_log(log):
         "level": level,
         "message": message
     }
+def fingerprint_error(message):
+    fingerprint = re.sub(r"user \d+", "user <ID>", message)
+
+    return fingerprint
 def analyze_logs(parsed_logs):
     error_counts = {}
 
     for log in parsed_logs:
         if log["level"] == "ERROR":
             message = log["message"]
-
-            if message in error_counts:
-                error_counts[message] += 1
+            fingerprint = fingerprint_error(message)
+            if fingerprint in error_counts:
+                error_counts[fingerprint] += 1
             else:
-                error_counts[message] = 1
+                error_counts[fingerprint] = 1
 
     return error_counts
+
+  
