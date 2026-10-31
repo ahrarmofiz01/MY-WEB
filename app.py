@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 from log_processor import parse_log, analyze_logs
-from database import init_db, save_upload, save_incidents
+from database import init_db, save_upload, save_incidents,get_upload_history
 
 app = Flask(__name__)
 init_db()
@@ -10,6 +10,14 @@ init_db()
 def home():
     return render_template("index.html")
 
+@app.route("/history")
+def history():
+    uploads = get_upload_history()
+
+    return render_template(
+        "history.html",
+        uploads=uploads
+    )
 
 @app.route("/upload", methods=["POST"])
 def upload():

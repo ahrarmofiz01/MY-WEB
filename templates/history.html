@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IncidentLens - Upload History</title>
+</head>
+<body>
+
+    <h1>Upload History</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Upload ID</th>
+                <th>Filename</th>
+                <th>Total Logs</th>
+                <th>Upload Date</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for upload in uploads %}
+            <tr>
+                <td>{{ upload[0] }}</td>
+                <td>{{ upload[1] }}</td>
+                <td>{{ upload[2] }}</td>
+                <td>{{ upload[3] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+
+    <br>
+
+    <a href="/">Back to Home</a>
+
+</body>
+</html>
