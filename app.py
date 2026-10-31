@@ -1,7 +1,9 @@
 from flask import Flask, render_template, request, jsonify
 from log_processor import parse_log, analyze_logs
+from database import init_db, save_upload, save_incidents
 
 app = Flask(__name__)
+init_db()
 
 
 @app.route("/")
@@ -26,6 +28,13 @@ def upload():
 
     # Loop complete hone ke baad analysis hoga
     error_counts = analyze_logs(parsed_logs)
+    upload_id = save_upload(
+    file.filename,
+    len(parsed_logs))
+
+    save_incidents(
+    upload_id,
+    error_counts)
 
     return render_template(
     "results.html",
