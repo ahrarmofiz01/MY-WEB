@@ -12,6 +12,7 @@
     <table border="1">
         <thead>
             <tr>
+                <th>Action</th>
                 <th>Upload ID</th>
                 <th>Filename</th>
                 <th>Total Logs</th>
@@ -26,6 +27,9 @@
                 <td>{{ upload[1] }}</td>
                 <td>{{ upload[2] }}</td>
                 <td>{{ upload[3] }}</td>
+                <td>
+    <a href="/incidents/{{ upload[0] }}">View Incidents</a>
+</td>
             </tr>
             {% endfor %}
         </tbody>
