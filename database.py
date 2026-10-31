@@ -59,3 +59,18 @@ def save_incidents(upload_id, error_counts):
 
     conn.commit()
     conn.close()
+def get_upload_history():
+    conn = sqlite3.connect(DATABASE)
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT id, filename, total_logs, created_at
+        FROM uploads
+        ORDER BY created_at DESC
+    """)
+
+    uploads = cursor.fetchall()
+
+    conn.close()
+
+    return uploads
