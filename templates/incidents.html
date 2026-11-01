@@ -26,6 +26,9 @@
             {% endfor %}
         </tbody>
     </table>
+    <form action="/analyze/{{ upload_id }}" method="POST">
+    <button type="submit">Analyze with AI</button>
+</form>
 
     <br>
 

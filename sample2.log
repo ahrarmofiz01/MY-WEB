@@ -1,0 +1,10 @@
+2026-10-31 15:00:01 INFO Application started
+2026-10-31 15:00:02 ERROR Payment service unavailable
+2026-10-31 15:00:03 WARNING Payment request timeout
+2026-10-31 15:00:04 ERROR Payment service unavailable
+2026-10-31 15:00:05 ERROR Redis connection failed
+2026-10-31 15:00:06 INFO User logged in
+2026-10-31 15:00:07 ERROR Redis connection failed
+2026-10-31 15:00:08 ERROR Payment service unavailable
+2026-10-31 15:00:09 WARNING High memory usage
+2026-10-31 15:00:10 INFO Application running

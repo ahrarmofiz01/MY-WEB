@@ -8,6 +8,7 @@ from database import (
     get_upload_history,
     get_incidents_by_upload
 )
+from ai_analyzer import analyze_incidents
 
 app = Flask(__name__)
 init_db()
@@ -32,6 +33,21 @@ def incidents(upload_id):
     return render_template(
         "incidents.html",
         incidents=incident_data,
+        upload_id=upload_id
+    )
+@app.route("/analyze/<int:upload_id>", methods=["POST"])
+def analyze(upload_id):
+
+    incident_data = get_incidents_by_upload(upload_id)
+
+    if not incident_data:
+        return "No incidents found for this upload."
+
+    ai_result = analyze_incidents(incident_data)
+
+    return render_template(
+        "ai_analysis.html",
+        ai_result=ai_result,
         upload_id=upload_id
     )
 
