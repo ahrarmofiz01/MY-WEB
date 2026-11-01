@@ -1,4 +1,6 @@
+
 import os
+
 from groq import Groq
 from dotenv import load_dotenv
 
@@ -9,8 +11,9 @@ api_key = os.getenv("GROQ_API_KEY")
 client = Groq(api_key=api_key)
 
 
-def analyze_incidents(incidents):
+def analyze_incidents(incidents, retrieved_context=""):
 
+    # Incidents ko text mein convert karna
     incident_text = ""
 
     for fingerprint, frequency in incidents:
@@ -19,12 +22,17 @@ def analyze_incidents(incidents):
             f"Frequency: {frequency}\n\n"
         )
 
+    # AI ke liye prompt
     prompt = f"""
 You are an experienced software debugging assistant.
 
 Analyze the following application incidents.
 
+Incident Data:
 {incident_text}
+
+Retrieved Troubleshooting Documentation:
+{retrieved_context}
 
 Provide the analysis in these sections:
 
@@ -39,8 +47,13 @@ Important:
 - Give practical debugging steps.
 - If information is insufficient, mention what additional logs
   or configuration details are needed.
+- Use retrieved documentation as supporting context.
+- Do not assume retrieved documentation proves the root cause.
+- Mention relevant documentation sources when applicable.
+- Do not invent services, dependencies, or configuration details.
 """
 
+    # Groq API se AI analysis lena
     response = client.chat.completions.create(
         model="openai/gpt-oss-20b",
         messages=[
@@ -52,4 +65,5 @@ Important:
         temperature=0.2
     )
 
+    # AI ka response return karna
     return response.choices[0].message.content

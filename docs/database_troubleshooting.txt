@@ -1,0 +1,25 @@
+Database Troubleshooting Guide
+
+Database connection failed:
+A database connection failure may occur because the database server is unavailable,
+the connection configuration is incorrect, credentials are invalid,
+or the application cannot reach the database server.
+
+Debugging steps:
+1. Check whether the database server is running.
+2. Verify the database host, port, and database name.
+3. Verify the configured username and password.
+4. Check network connectivity between the application and database.
+5. Review database server logs.
+6. Check whether the database connection limit has been reached.
+
+Database connection timeout:
+A database timeout may occur because of network latency, server overload,
+long-running queries, or connection pool exhaustion.
+
+Debugging steps:
+1. Inspect database CPU and memory usage.
+2. Identify long-running queries.
+3. Check connection pool usage.
+4. Review timeout configuration.
+5. Inspect database logs for errors.
