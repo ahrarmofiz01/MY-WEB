@@ -81,11 +81,3 @@ def retrieve_context(query, top_k=2):
         )
 
     return retrieved_context
-if __name__ == "__main__":
-
-    query = "Redis connection refused"
-
-    context = retrieve_context(query)
-
-    print("Retrieved Context:")
-    print(context)

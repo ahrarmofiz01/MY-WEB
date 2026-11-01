@@ -1,138 +1,357 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>IncidentLens Dashboard</title>
+    <title>IncidentLens - Analysis Results</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
 
     <style>
         body {
+            background-color: #0f172a;
+            color: #e2e8f0;
             font-family: Arial, sans-serif;
-            background-color: #f4f6f9;
-            margin: 0;
-            padding: 30px;
         }
 
-        h1 {
-            color: #1e293b;
+        .sidebar {
+            background-color: #111827;
+            min-height: 100vh;
+            border-right: 1px solid #263244;
         }
 
-        .cards {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 30px;
+        .brand {
+            color: #38bdf8;
+            font-size: 24px;
+            font-weight: bold;
         }
 
-        .card {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            width: 200px;
-            box-shadow: 0 2px 8px #ddd;
+        .sidebar a {
+            display: block;
+            color: #94a3b8;
+            text-decoration: none;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 8px;
         }
 
-        .card h3 {
-            color: #64748b;
-            margin: 0;
+        .sidebar a:hover {
+            background-color: #1e293b;
+            color: white;
         }
 
-        .card p {
+        .main-content {
+            padding: 35px;
+        }
+
+        .result-card {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .summary-card {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 22px;
+        }
+
+        .card-label {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        .card-value {
+            color: #f8fafc;
             font-size: 30px;
             font-weight: bold;
-            margin-bottom: 0;
+            margin-top: 8px;
         }
 
-        .error {
-            color: #dc2626;
+        .section-title {
+            color: #f8fafc;
+            font-weight: bold;
         }
 
-        .warning {
-            color: #d97706;
+        .text-muted-custom {
+            color: #94a3b8;
         }
 
-        table {
-            width: 100%;
-            background: white;
-            border-collapse: collapse;
-            margin-top: 20px;
+        .table {
+            color: #e2e8f0;
         }
 
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
+        .table thead th {
+            color: #94a3b8;
+            background-color: #111827;
+            border-color: #334155;
         }
 
-        th {
-            background: #e2e8f0;
+        .table tbody td {
+            background-color: #1e293b;
+            border-color: #334155;
+            vertical-align: middle;
+        }
+
+        .error-badge {
+            background-color: #7f1d1d;
+            color: #fecaca;
+            padding: 6px 12px;
+            border-radius: 20px;
+        }
+
+        .btn-primary {
+            background-color: #0284c7;
+            border-color: #0284c7;
+        }
+
+        .btn-primary:hover {
+            background-color: #0369a1;
+            border-color: #0369a1;
+        }
+
+        .log-message {
+            word-break: break-word;
         }
     </style>
 </head>
 
 <body>
 
-    <h1>IncidentLens</h1>
-    <p>Application Log Analysis Dashboard</p>
+<div class="container-fluid">
+    <div class="row">
 
-    <div class="cards">
+        <!-- Sidebar -->
+        <div class="col-md-2 sidebar p-4">
 
-        <div class="card">
-            <h3>Total Logs</h3>
-            <p>{{ total_logs }}</p>
+            <div class="brand mb-5">
+                IncidentLens
+            </div>
+
+            <a href="/">Dashboard</a>
+
+            <a href="/history">Upload History</a>
+
         </div>
 
-        <div class="card">
-            <h3>Total Errors</h3>
-            <p class="error">
-                {{ error_counts.values() | sum }}
-            </p>
-        </div>
+        <!-- Main Content -->
+        <div class="col-md-10 main-content">
 
-        <div class="card">
-            <h3>Unique Errors</h3>
-            <p class="warning">
-                {{ error_counts | length }}
-            </p>
+            <!-- Header -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+
+                <div>
+                    <h1 class="section-title">
+                        Log Analysis Results
+                    </h1>
+
+                    <p class="text-muted-custom">
+                        Summary of the uploaded application logs.
+                    </p>
+                </div>
+
+                <span class="badge bg-success">
+                    Analysis Complete
+                </span>
+
+            </div>
+
+            <!-- Summary Cards -->
+            <div class="row g-4 mb-4">
+
+                <div class="col-md-6">
+
+                    <div class="summary-card">
+
+                        <div class="card-label">
+                            Total Parsed Logs
+                        </div>
+
+                        <div class="card-value">
+                            {{ total_logs }}
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <div class="summary-card">
+
+                        <div class="card-label">
+                            Unique Error Types
+                        </div>
+
+                        <div class="card-value">
+                            {{ error_counts | length }}
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Error Summary -->
+            <div class="result-card mb-4">
+
+                <h4 class="section-title mb-3">
+                    Error Summary
+                </h4>
+
+                <div class="table-responsive">
+
+                    <table class="table table-hover mb-0">
+
+                        <thead>
+                            <tr>
+                                <th>Error Message</th>
+                                <th>Frequency</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            {% for error, frequency in error_counts.items() %}
+
+                            <tr>
+
+                                <td class="log-message">
+                                    {{ error }}
+                                </td>
+
+                                <td>
+                                    <span class="error-badge">
+                                        {{ frequency }}
+                                    </span>
+                                </td>
+
+                            </tr>
+
+                            {% else %}
+
+                            <tr>
+                                <td colspan="2" class="text-center py-4">
+                                    <p class="text-muted-custom mb-0">
+                                        No errors found in this log file.
+                                    </p>
+                                </td>
+                            </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+            <!-- Parsed Logs -->
+            <div class="result-card mb-4">
+
+                <h4 class="section-title mb-3">
+                    Parsed Logs
+                </h4>
+
+                <div class="table-responsive">
+
+                    <table class="table table-hover mb-0">
+
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>Level</th>
+                                <th>Message</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            {% for log in parsed_logs %}
+
+                            <tr>
+
+                                <td>
+                                    {{ log.timestamp }}
+                                </td>
+
+                                <td>
+                                    {% if log.level == "ERROR" %}
+
+                                    <span class="badge bg-danger">
+                                        {{ log.level }}
+                                    </span>
+
+                                    {% elif log.level == "WARNING" %}
+
+                                    <span class="badge bg-warning text-dark">
+                                        {{ log.level }}
+                                    </span>
+
+                                    {% else %}
+
+                                    <span class="badge bg-info text-dark">
+                                        {{ log.level }}
+                                    </span>
+
+                                    {% endif %}
+                                </td>
+
+                                <td class="log-message">
+                                    {{ log.message }}
+                                </td>
+
+                            </tr>
+
+                            {% else %}
+
+                            <tr>
+                                <td colspan="3" class="text-center py-4">
+                                    <p class="text-muted-custom mb-0">
+                                        No valid logs were parsed.
+                                    </p>
+                                </td>
+                            </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+            <!-- Navigation -->
+            <div class="d-flex gap-3 flex-wrap">
+
+                <a href="/" class="btn btn-primary">
+                    Upload Another Log
+                </a>
+
+                <a href="/history" class="btn btn-outline-light">
+                    View Upload History
+                </a>
+
+            </div>
+
         </div>
 
     </div>
-
-    <h2>Detected Errors</h2>
-
-    <table>
-        <tr>
-            <th>Error Message</th>
-            <th>Frequency</th>
-        </tr>
-
-        {% for message, count in error_counts.items() %}
-        <tr>
-            <td>{{ message }}</td>
-            <td>{{ count }}</td>
-        </tr>
-        {% endfor %}
-
-    </table>
-
-    <h2>All Parsed Logs</h2>
-
-    <table>
-        <tr>
-            <th>Timestamp</th>
-            <th>Level</th>
-            <th>Message</th>
-        </tr>
-
-        {% for log in parsed_logs %}
-        <tr>
-            <td>{{ log.timestamp }}</td>
-            <td>{{ log.level }}</td>
-            <td>{{ log.message }}</td>
-        </tr>
-        {% endfor %}
-
-    </table>
+</div>
 
 </body>
 </html>
+

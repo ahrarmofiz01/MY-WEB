@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,34 +6,317 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>IncidentLens</title>
+    <title>IncidentLens - Dashboard</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <style>
+        body {
+            background-color: #0f172a;
+            color: #e2e8f0;
+            font-family: Arial, sans-serif;
+        }
+
+        .sidebar {
+            background-color: #111827;
+            min-height: 100vh;
+            border-right: 1px solid #263244;
+        }
+
+        .brand {
+            color: #38bdf8;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .sidebar a {
+            display: block;
+            color: #94a3b8;
+            text-decoration: none;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+
+        .sidebar a:hover {
+            background-color: #1e293b;
+            color: white;
+        }
+
+        .main-content {
+            padding: 35px;
+        }
+
+        .dashboard-card {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 24px;
+            height: 100%;
+        }
+
+        .card-label {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        .card-value {
+            color: #f8fafc;
+            font-size: 32px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .upload-box {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .section-title {
+            color: #f8fafc;
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background-color: #0284c7;
+            border-color: #0284c7;
+        }
+
+        .btn-primary:hover {
+            background-color: #0369a1;
+            border-color: #0369a1;
+        }
+
+        .form-control {
+            background-color: #0f172a;
+            color: white;
+            border-color: #334155;
+        }
+
+        .form-control:focus {
+            background-color: #0f172a;
+            color: white;
+            border-color: #38bdf8;
+            box-shadow: none;
+        }
+
+        .form-control::file-selector-button {
+            background-color: #334155;
+            color: white;
+        }
+
+        .text-muted-custom {
+            color: #94a3b8;
+        }
+    </style>
 </head>
 
 <body>
 
-    <h1>IncidentLens</h1>
+<div class="container-fluid">
+    <div class="row">
 
-    <p>AI-Powered Log Analysis & Debugging Platform</p>
+        <!-- Sidebar -->
+        <div class="col-md-2 sidebar p-4">
 
-    <h2>Upload Application Logs</h2>
+            <div class="brand mb-5">
+                IncidentLens
+            </div>
 
-    <form action="/upload" method="POST" enctype="multipart/form-data">
+            <a href="/">Dashboard</a>
 
-        <label for="logfile">Select your log file:</label>
+            <a href="/history">Upload History</a>
 
-        <input
-            type="file"
-            id="logfile"
-            name="logfile"
-            accept=".log,.txt"
-            required
-        >
+        </div>
 
-        <button type="submit">Upload Logs</button>
+        <!-- Main Content -->
+        <div class="col-md-10 main-content">
 
-    </form>
+            <!-- Header -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+
+                <div>
+                    <h1 class="section-title">Dashboard</h1>
+
+                    <p class="text-muted-custom">
+                        AI-powered log analysis and incident investigation
+                    </p>
+                </div>
+
+                <span class="badge bg-success">
+                    System Active
+                </span>
+
+            </div>
+
+            <!-- Summary Cards -->
+            <div class="row g-4 mb-4">
+
+                <div class="col-md-4">
+                    <div class="dashboard-card">
+
+                        <div class="card-label">
+                            Log Analysis
+                        </div>
+
+                        <div class="card-value">
+                            AI
+                        </div>
+
+                        <p class="text-muted-custom mt-2 mb-0">
+                            Automated incident insights
+                        </p>
+
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="dashboard-card">
+
+                        <div class="card-label">
+                            Error Detection
+                        </div>
+
+                        <div class="card-value">
+                            Real-time*
+                        </div>
+
+                        <p class="text-muted-custom mt-2 mb-0">
+                            Detect errors from uploaded logs
+                        </p>
+
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="dashboard-card">
+
+                        <div class="card-label">
+                            Documentation
+                        </div>
+
+                        <div class="card-value">
+                            RAG
+                        </div>
+
+                        <p class="text-muted-custom mt-2 mb-0">
+                            Context-aware troubleshooting
+                        </p>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Upload Logs -->
+            <div class="upload-box mb-4">
+
+                <h4 class="section-title mb-3">
+                    Upload Log File
+                </h4>
+
+                <p class="text-muted-custom">
+                    Upload your application logs to detect and investigate incidents.
+                </p>
+
+                <form
+                    action="/upload"
+                    method="POST"
+                    enctype="multipart/form-data"
+                >
+
+                    <div class="mb-3">
+
+                        <label
+                            for="logfile"
+                            class="form-label"
+                        >
+                            Select log file
+                        </label>
+
+                        <input
+                            type="file"
+                            name="logfile"
+                            id="logfile"
+                            class="form-control"
+                            accept=".log,.txt"
+                            required
+                        >
+
+                    </div>
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                    >
+                        Analyze Logs
+                    </button>
+
+                </form>
+
+            </div>
+
+            <!-- Features -->
+            <div class="row g-4">
+
+                <div class="col-md-6">
+
+                    <div class="dashboard-card">
+
+                        <h5 class="section-title">
+                            Incident Detection
+                        </h5>
+
+                        <p class="text-muted-custom">
+                            Group similar errors and identify recurring incidents
+                            from uploaded application logs.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <div class="dashboard-card">
+
+                        <h5 class="section-title">
+                            AI Troubleshooting
+                        </h5>
+
+                        <p class="text-muted-custom">
+                            Generate probable root causes, debugging steps,
+                            and prevention recommendations using AI.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <p class="text-muted-custom mt-4">
+                *This version analyzes uploaded logs. It does not monitor
+                a live application in real time.
+            </p>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- Bootstrap JavaScript -->
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
 
 </body>
-
 </html>
+
 

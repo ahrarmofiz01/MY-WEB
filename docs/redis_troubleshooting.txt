@@ -1,0 +1,24 @@
+Redis Troubleshooting Guide
+
+Redis connection refused:
+A Redis connection refused error may occur when the Redis server is not running,
+the application is using an incorrect Redis host or port, or the Redis service
+is not reachable from the application environment.
+
+Debugging steps:
+1. Check whether the Redis server is running.
+2. Verify the Redis host and port in the application configuration.
+3. Check network connectivity between the application and Redis.
+4. Review Redis server logs for startup or connection errors.
+5. Check whether a firewall or container networking issue is blocking access.
+
+Redis timeout:
+A Redis timeout may occur because the Redis server is overloaded,
+network latency is high, or the application is waiting too long for a response.
+
+Debugging steps:
+1. Check Redis CPU and memory usage.
+2. Review application timeout configuration.
+3. Inspect Redis slow logs.
+4. Check network latency.
+5. Determine whether too many concurrent requests are being sent.
