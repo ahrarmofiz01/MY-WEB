@@ -1,5 +1,16 @@
 # IncidentLens
 
+## Screenshots
+
+### Dashboard
+![IncidentLens Dashboard](screenshots/dashboard.png)
+
+### Incident Analysis
+![Incident Analysis](screenshots/incidents.png)
+
+### AI-Powered Analysis
+![AI Analysis](screenshots/ai-analysis.png)
+
 AI-powered log analysis and debugging platform built with Flask.
 
 ## Features
