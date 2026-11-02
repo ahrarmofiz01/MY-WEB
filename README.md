@@ -67,3 +67,15 @@ Open `http://127.0.0.1:5000` in your browser.
 ## Disclaimer
 
 AI-generated incident analysis provides probable causes and debugging suggestions. It does not confirm the actual root cause of an incident.
+## Installation & Setup
+
+### 1. Clone the repository
+
+```bash
+git clone YOUR_GITHUB_REPOSITORY_URL
+cd IncidentLens
+python -m venv venv
+source venv/bin/activate
+pip install flask groq python-dotenv scikit-learn markdown
+GROQ_API_KEY=your_api_key_here
+Run the application:flask run
